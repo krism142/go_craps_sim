@@ -1,6 +1,6 @@
 From golang
 
-ENV dice_rolls 100000
+ENV dice_rolls 10
 ENV dice_sides 6
 
 RUN mkdir /app

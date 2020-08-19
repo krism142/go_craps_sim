@@ -2,25 +2,21 @@ package main
 
 import (
   "os"
-	"strconv"
+	"fmt"
 	"github.com/krism142/go_craps_sim/player"
 )
 
 func main() {
-	rolls,err := strconv.Atoi(os.Getenv("dice_rolls"))
-	if err != nil {
-		return
+  var stillTurn = true
+	var err error
+	for {
+		if stillTurn {
+			stillTurn,err = player.TakeTurn()
+		}else{
+			break
+		}
+		if err != nil {
+			fmt.Fprintf(os.Stdout, "There was an error, it was \n%v\n", err)
+		}
 	}
-	//var i,dice1,dice2,result int
-	//var nums [13]int
-	for i:=0; i<int(rolls); i++ {
-		//dice1,dice2,err = dice.CrapsRoll()
-		//result = dice1+dice2
-		//nums[result] = nums[result]+1
-		//fmt.Fprintf(os.Stdout, "Dice1: %v, Dice2: %v, Total: %v\n", dice1, dice2, result)
-		player.TakeTurn()
-	}
-	//for i=0; i<13; i++ {
-	//	fmt.Fprintf(os.Stdout, "%v : %v\n", i, nums[i])
-	//}
 }
